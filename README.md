@@ -14,7 +14,7 @@
 - [ ] Normalização das interações dos botões com as regras matemática.
 
 
-![img.png](../../../../resources/dev/jordanlima/img.png)
+![img.png](src/main/resources/dev/jordanlima/img.png)
 
 ## Objetivo
 - #### O principal objetivo foi tirar do papel os conhecimentos em java sem ter que ficar fazendo estrutura web e criar um portifólio.
