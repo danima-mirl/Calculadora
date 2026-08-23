@@ -102,6 +102,8 @@ public class Calculator extends Application {
 
 
 
+
+
         hbox.getChildren().add(aviso);
         hbox.setAlignment(Pos.CENTER);
         HBox.getHgrow(btnAC);
@@ -135,9 +137,10 @@ public class Calculator extends Application {
 
     public void teclaOperador(Button btn, Label display){
         btn.setOnAction(e -> {
-            if(!display.getText().endsWith("+") || !display.getText().endsWith("-") || !display.getText().endsWith("*") || !display.getText().endsWith("/") || !display.getText().endsWith("%")) {
-                display.setText(display.getText().concat(btn.getText()));
+            if(display.getText().endsWith("+") || display.getText().endsWith("-") || display.getText().endsWith("*") || display.getText().endsWith("/") || display.getText().endsWith("%")) {
+                return;
             }
+            display.setText(display.getText().concat(btn.getText()));
         });
     }
 }
