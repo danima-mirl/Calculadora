@@ -45,30 +45,31 @@ public class Calculator extends Application {
         Button btnParenteseEsquerdo = new Button("(");
         Button btnParenteseDireito = new Button(")");
 
-
-
-
-
+        // Linha 4 do grid
         grid.add(numZero, 0, 4);
         grid.add(btnPonto, 1, 4);
         grid.add(btnIgual, 2, 4);
         grid.add(btnMais, 3, 4);
 
+        // Linha 3 do grid
         grid.add(numUm, 0, 3);
         grid.add(numDois, 1, 3);
         grid.add(numTres, 2, 3);
         grid.add(btnMenos, 3, 3);
 
+        // Linha 2 do grid
         grid.add(numQuatro, 0, 2);
         grid.add(numCinco, 1, 2);
         grid.add(numSeis, 2, 2);
         grid.add(btnVezes, 3, 2);
 
+        // Linha 1 do grid
         grid.add(numSete, 0, 1);
         grid.add(numOito, 1, 1);
         grid.add(numNove, 2, 1);
         grid.add(btnDividir, 3, 1);
 
+        // Linha 0 do grid
         grid.add(btnParenteseEsquerdo, 0, 0);
         grid.add(btnParenteseDireito, 1, 0);
         grid.add(btnPorcentagem, 2, 0);
@@ -100,14 +101,9 @@ public class Calculator extends Application {
             }
         });
 
-
-
-
-
         hbox.getChildren().add(aviso);
         hbox.setAlignment(Pos.CENTER);
         HBox.getHgrow(btnAC);
-
 
         grid.setAlignment(Pos.CENTER);
         grid.prefWidth(layout.getWidth());
@@ -117,8 +113,6 @@ public class Calculator extends Application {
         layout.setCenter(grid);
         root.getChildren().add(layout);
 
-        Objects.requireNonNull(scene.getStylesheets().getClass().getResource(
-                "/dev/jordanlima/css/main.css")).toExternalForm();
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
