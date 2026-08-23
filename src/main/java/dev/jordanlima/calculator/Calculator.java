@@ -8,22 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.Objects;
 
 public class Calculator extends Application {
     @Override
     public void start(Stage main) throws IOException {
         Stage stage = new Stage();
         Group root = new Group();
-        Scene scene = new Scene(root, 300,300);
+        Scene scene = new Scene(root);
         BorderPane layout = new BorderPane();
         GridPane grid = new GridPane();
         HBox hbox = new HBox();
 
         Label aviso = new Label("0");
-
         Button btnAC = new Button("AC");
         Button numUm = new Button("1");
         Button numDois = new Button("2");
@@ -44,6 +41,7 @@ public class Calculator extends Application {
         Button btnPorcentagem = new Button("%");
         Button btnParenteseEsquerdo = new Button("(");
         Button btnParenteseDireito = new Button(")");
+
 
         // Linha 4 do grid
         grid.add(numZero, 0, 4);
@@ -75,6 +73,7 @@ public class Calculator extends Application {
         grid.add(btnPorcentagem, 2, 0);
         grid.add(btnAC, 3, 0);
 
+        btnAC.setId("btnAC");
 
         tecladoNumerico(numUm, aviso);
         tecladoNumerico(numDois, aviso);
@@ -101,18 +100,23 @@ public class Calculator extends Application {
             }
         });
 
+        HBox.setHgrow(aviso, Priority.ALWAYS);
+        aviso.setId("aviso");
+        aviso.setMaxWidth(Double.MAX_VALUE);
+
         hbox.getChildren().add(aviso);
         hbox.setAlignment(Pos.CENTER);
-        HBox.getHgrow(btnAC);
 
         grid.setAlignment(Pos.CENTER);
         grid.prefWidth(layout.getWidth());
 
-        layout.setMinSize(300, 300);
         layout.setTop(hbox);
         layout.setCenter(grid);
+
         root.getChildren().add(layout);
 
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("/dev/jordanlima" +
+                "/main.css")));
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
@@ -127,6 +131,7 @@ public class Calculator extends Application {
             }
             display.setText(display.getText() + btn.getText());
         });
+
     }
 
     public void teclaOperador(Button btn, Label display){

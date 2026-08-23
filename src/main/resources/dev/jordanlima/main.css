@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
+Button {
+    -fx-background-color: #000000;
+    -fx-pref-width: 60;
+    -fx-pref-height: 60;
+    -fx-text-base-color: #fff;
+    -fx-font-size: 20;
+    -fx-border-color: linear-gradient(from 100.0% 100.0% to 0.0% 0.0%, repeat, #ffffff 0.0%, #000000 100.0%);
+    -fx-border-width: 2px;
+    -fx-border-style: groove;
+    -fx-border-radius: 20%;
+}
+
+#aviso {
+    -fx-prf-height: 40;
+    -fx-font-size: 30;
+    -fx-font-family: "Bitcount Prop Single", system-ui;
+    -fx-color: #5c5c5c;
+    -fx-pref-height: 50;
+    -fx-background-color: #52795c;
+    -fx-text-alignment: center;
+    -fx-alignment: center-right;
+}
