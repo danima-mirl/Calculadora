@@ -95,12 +95,11 @@ public class Calculator extends Application {
         btnAC.setOnAction(e -> aviso.setText("0"));
 
         btnPonto.setOnAction(e -> {
-            if(aviso.getText().endsWith("+") || aviso.getText().endsWith("-") || aviso.getText().endsWith("*") || aviso.getText().endsWith("/") || aviso.getText().endsWith("%")) {
+            if(aviso.getText().endsWith("+") || aviso.getText().endsWith("-") || aviso.getText().endsWith("*") || aviso.getText().endsWith("/") || aviso.getText().endsWith("%") || aviso.getText().contains(".")) {
                 return;
             }
-            if(!aviso.getText().contains(".")) {
-                aviso.setText(aviso.getText() + btnPonto.getText());
-            }
+            aviso.setText(aviso.getText() + btnPonto.getText());
+
         });
 
         HBox.setHgrow(aviso, Priority.ALWAYS);
