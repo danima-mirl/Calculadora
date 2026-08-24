@@ -12,6 +12,16 @@ Button {
     -fx-border-radius: 20%;
 }
 
+Button:hover {
+    -fx-background-color: #000000a8;
+
+}
+
+Button:pressed {
+    -fx-scale-x: 95%;
+    -fx-scale-y: 95%;
+}
+
 #aviso {
     -fx-prf-height: 40;
     -fx-font-size: 30;

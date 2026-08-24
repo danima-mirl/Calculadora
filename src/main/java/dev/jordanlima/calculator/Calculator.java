@@ -95,6 +95,9 @@ public class Calculator extends Application {
         btnAC.setOnAction(e -> aviso.setText("0"));
 
         btnPonto.setOnAction(e -> {
+            if(aviso.getText().endsWith("+") || aviso.getText().endsWith("-") || aviso.getText().endsWith("*") || aviso.getText().endsWith("/") || aviso.getText().endsWith("%")) {
+                return;
+            }
             if(!aviso.getText().contains(".")) {
                 aviso.setText(aviso.getText() + btnPonto.getText());
             }
@@ -136,7 +139,8 @@ public class Calculator extends Application {
 
     public void teclaOperador(Button btn, Label display){
         btn.setOnAction(e -> {
-            if(display.getText().endsWith("+") || display.getText().endsWith("-") || display.getText().endsWith("*") || display.getText().endsWith("/") || display.getText().endsWith("%")) {
+            if(display.getText().endsWith("+") || display.getText().endsWith(
+                    "-") || display.getText().endsWith("*") || display.getText().endsWith("/") || display.getText().endsWith("%") || display.getText().endsWith(".")) {
                 return;
             }
             display.setText(display.getText().concat(btn.getText()));
