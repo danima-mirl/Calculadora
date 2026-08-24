@@ -7,10 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Calculator extends Application {
+    private MediaPlayer player;
     @Override
     public void start(Stage main) throws IOException {
         Stage stage = new Stage();
@@ -19,6 +24,7 @@ public class Calculator extends Application {
         BorderPane layout = new BorderPane();
         GridPane grid = new GridPane();
         HBox hbox = new HBox();
+
 
         Label aviso = new Label("0");
         Button btnAC = new Button("AC");
@@ -41,7 +47,6 @@ public class Calculator extends Application {
         Button btnPorcentagem = new Button("%");
         Button btnParenteseEsquerdo = new Button("(");
         Button btnParenteseDireito = new Button(")");
-
 
         // Linha 4 do grid
         grid.add(numZero, 0, 4);
@@ -92,16 +97,19 @@ public class Calculator extends Application {
         teclaOperador(btnDividir, aviso);
         teclaOperador(btnPorcentagem, aviso);
 
-        btnAC.setOnAction(e -> aviso.setText("0"));
+        btnAC.setOnAction(e -> {
+            aviso.setText("0");
+            somClick();
+        });
 
         btnPonto.setOnAction(e -> {
+            somClick();
             if(aviso.getText().endsWith("+") || aviso.getText().endsWith("-") || aviso.getText().endsWith("*") || aviso.getText().endsWith("/") || aviso.getText().endsWith("%") || aviso.getText().contains(".")) {
                 return;
             }
             aviso.setText(aviso.getText() + btnPonto.getText());
 
         });
-
         HBox.setHgrow(aviso, Priority.ALWAYS);
         aviso.setId("aviso");
         aviso.setMaxWidth(Double.MAX_VALUE);
@@ -127,22 +135,31 @@ public class Calculator extends Application {
 
     public void tecladoNumerico(Button btn, Label display) {
         btn.setOnAction(e -> {
+            somClick();
             if(display.getText().equals("0")) {
                 display.setText(btn.getText());
                 return;
             }
             display.setText(display.getText() + btn.getText());
         });
-
     }
 
     public void teclaOperador(Button btn, Label display){
         btn.setOnAction(e -> {
+            somClick();
             if(display.getText().endsWith("+") || display.getText().endsWith(
                     "-") || display.getText().endsWith("*") || display.getText().endsWith("/") || display.getText().endsWith("%") || display.getText().endsWith(".")) {
                 return;
             }
             display.setText(display.getText().concat(btn.getText()));
         });
+    }
+
+    public void somClick() {
+        this.player =
+                new MediaPlayer(new Media(getClass().getResource("/dev" +
+                        "/jordanlima/key.wav").toExternalForm()));
+        this.player.setCycleCount(MediaPlayer.INDEFINITE);
+        this.player.play();
     }
 }
