@@ -5,7 +5,7 @@
 ## Desafios:
 - [x] Estilização da Calculadora
 
-- [ ] Animações das teclas
+- [x] Animações das teclas
 
 - [ ] Som clássico de calculadora
 
