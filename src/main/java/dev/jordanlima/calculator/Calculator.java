@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -16,6 +15,7 @@ import java.util.Objects;
 
 public class Calculator extends Application {
     private MediaPlayer player;
+    private int contaParentese;
     @Override
     public void start(Stage main) throws IOException {
         Stage stage = new Stage();
@@ -24,9 +24,8 @@ public class Calculator extends Application {
         BorderPane layout = new BorderPane();
         GridPane grid = new GridPane();
         HBox hbox = new HBox();
-
-
         Label aviso = new Label("0");
+
         Button btnAC = new Button("AC");
         Button numUm = new Button("1");
         Button numDois = new Button("2");
@@ -97,9 +96,20 @@ public class Calculator extends Application {
         teclaOperador(btnDividir, aviso);
         teclaOperador(btnPorcentagem, aviso);
 
+        setContaParentese(btnParenteseDireito, aviso);
+        setContaParentese(btnParenteseEsquerdo, aviso);
+
         btnAC.setOnAction(e -> {
             aviso.setText("0");
             somClick();
+        });
+
+        String s = "['\0-9']";
+
+        btnIgual.setOnAction(e -> {
+           for(char c : s.toCharArray()) {
+               System.out.println(c);
+           };
         });
 
         btnPonto.setOnAction(e -> {
@@ -157,9 +167,28 @@ public class Calculator extends Application {
 
     public void somClick() {
         this.player =
-                new MediaPlayer(new Media(getClass().getResource("/dev" +
-                        "/jordanlima/key.wav").toExternalForm()));
+                new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/dev" +
+                        "/jordanlima/key.wav")).toExternalForm()));
         this.player.setCycleCount(MediaPlayer.INDEFINITE);
         this.player.play();
+    }
+
+    public void setContaParentese(Button btn, Label display) {
+        if(btn.getText().equals("(")) {
+            btn.setOnAction(e -> {
+                this.contaParentese += 1;
+                display.setText(display.getText() + btn.getText());
+            });
+        }
+
+        if(btn.getText().equals(")")) {
+            btn.setOnAction(e -> {
+                if(this.contaParentese == 0) {
+                    return;
+                }
+                this.contaParentese -= 1;
+                display.setText(display.getText() + btn.getText());
+            });
+        }
     }
 }
